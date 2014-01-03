@@ -108,7 +108,6 @@ test("Key \\b", function(){
 	});
 })
 
-
 //tests when the key is inserted
 test("Key Character Order", function(){
 	
@@ -448,6 +447,15 @@ test("typing in a number works", function() {
     equal( st.g('key').value, "9999", "typing in numbers works" );
     start();
   });
+});
+
+test("Clear an input element of contents", function(){
+	stop();
+	st.g("key").value = "some text";
+	Syn.type("[ctrl][a][delete][ctrl-up]", "key", function(){
+		equal(st.g("key").value, "", "Input cleared");
+		start();
+	});
 });
 
 })
