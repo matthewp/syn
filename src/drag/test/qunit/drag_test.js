@@ -47,6 +47,10 @@ steal("src/synthetic.js", function (Syn) {
 			"<div id='right'></div>" +
 			"</div>");
 
+		var log = (typeof console.log === "function") ? function() {
+			return console.log.apply(console, arguments);
+		} : function() {};
+
 		div.appendTo($("#qunit-test-area"));
 		var basicCss = {
 			width: "90px",
@@ -93,7 +97,8 @@ steal("src/synthetic.js", function (Syn) {
 			}
 			clientX = ev.clientX;
 			if (ev.clientY < clientY) {
-				console.log('y', ev.clientY, clientY);
+				
+				log('y', ev.clientY, clientY);
 				ok(false, "mouse isn't moving right");
 			}
 			clientY = ev.clientY;
